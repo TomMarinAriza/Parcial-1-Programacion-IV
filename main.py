@@ -1,5 +1,5 @@
-import Api 
-import UI
+import Api.Api as Api 
+import Ui.UI as UI
 import pandas as pd
 
 
@@ -8,9 +8,9 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)  
 pd.set_option('display.max_colwidth', None)  
 
-client = Api.get_Data1()
-results = Api.get_Data(client)
-dataFrame = Api.get_DataFrame(results)
+client = Api.getClient()
+results = Api.getData(client)
+dataFrame = Api.getDataFrame(results)
 
 
 userData = UI.getDataFromUser()
@@ -21,7 +21,7 @@ while (UI.verifyUserData(userData,dataFrame)):
 
 
 filterTable = UI.visualizeTable(userData,dataFrame)
-median = UI.calculate_edaphic_median(dataFrame,userData[2])
+median = UI.calculateMedian(dataFrame,userData[2])
 
-finalTable = UI.integrate_medians(filterTable,median)
-
+print(filterTable)
+UI.showMedians(median)
